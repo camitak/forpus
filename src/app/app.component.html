@@ -1,0 +1,38 @@
+
+<nav>
+  <div class="nav-wrapper">
+    <a class="brand-logo">FORPUS</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <!-- Painel and home  -->
+      <li *ngIf="showMenu" routerLinkActive="active">
+        <a routerLink="painel">Painel</a>
+      </li>
+      
+      <!-- Config menu -->
+      <li *ngIf="showMenu" routerLinkActive="active">
+        <a materialize="dropdown" class="dropdown-button" routerLink="config"
+         data-activates="dropdownConfig" data-belowOrigin=true
+         dropdown data-hover="true">Configurações</a>
+         <!-- Dropdown Structure -->
+        <ul id="dropdownConfig" class="dropdown-content">
+          <li><a [routerLink]="['config/user']">Usuário</a></li>
+          <li><a [routerLink]="['config/hour']">Hora</a></li>
+        </ul>
+      </li>
+
+      <!-- Login/Logout -->
+      <li routerLinkActive="active">
+        <a routerLink="login">{{login}}</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div>   
+  <app-alert></app-alert>
+  <router-outlet> </router-outlet> 
+</div>
+
+<div>
+  <app-footer></app-footer>
+</div>

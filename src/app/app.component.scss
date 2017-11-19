@@ -1,0 +1,17 @@
+$forpusFontColor: #be9836;
+$forpusBackgroundColor:#f8f8f8; 
+
+nav{
+    .nav-wrapper {
+    
+        background: $forpusBackgroundColor;
+    }
+
+    a{
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: $forpusFontColor;
+    }
+}
+
+
+  

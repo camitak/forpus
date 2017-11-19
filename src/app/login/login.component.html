@@ -1,0 +1,43 @@
+<div class="container">
+  <div style="padding-top: 40px; padding-bottom: 20px">
+    <h4>Login Usuário</h4>
+  </div>
+
+<div class="row">
+    <form class="col s12" name="form" #f="ngForm" (ngSubmit)="f.form.valid && login()" novalidate>
+      
+      <!-- username -->
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate"
+           name="email" #email="ngModel" [(ngModel)]="model.email" required>
+          <label class="active" for="email" data-error="Campo e-mail obrigatório"
+           data-success>
+              E-mail
+          </label>
+        </div>
+      </div>
+  
+      <!-- password -->
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" name="password" 
+          class="validate" #password="ngModel" [(ngModel)]="model.password" required >
+          <label class="active" for="password" data-error="Campo senha obrigatório"
+           data-success>
+              Senha
+          </label>
+        </div>
+      </div>
+  
+      <!-- submit button -->
+      <div>
+        <button [disabled]="loading" class="btn waves-effect waves-light" 
+          type="submit" name="action">Entrar
+          <i class="material-icons right">send</i>        
+        </button>
+      </div>
+    </form>
+  </div>
+  
+</div>

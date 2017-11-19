@@ -1,0 +1,173 @@
+<div class="row data-table-prices" style="padding-left: 10px;">
+  <!-- tables of 1 col -->
+  <div class="col s2 overflow-x:auto;">
+    <!-- table of stocks and the benchmark ibov -->
+    <table class="z-depth-3">
+      <thead>
+        <tr>
+          <th>{{panelsType1.panelBenchmark.code}}</th>
+          <th>{{panelsType1.panelBenchmark.volume}}</th>
+          <th>{{panelsType1.panelBenchmark.percVol}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td>Alvin</td>
+        <td>Eclair</td>
+        <td>$0.87</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  
+    <!-- table for volatilities 30 minutes -->
+    <table class="z-depth-3">
+      <thead>
+        <tr>
+          <th>{{panelsType1.biggerVol30.code}}</th>
+          <th>{{panelsType1.biggerVol30.volume}}</th>
+          <th>{{panelsType1.biggerVol30.percVol}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td>Alvin</td>
+        <td>Eclair</td>
+        <td>$0.87</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- tables of 2 col -->
+  <div class="col s3 overflow-x:auto;" >
+    <!-- table of stocks and the benchmark ibov -->
+    <table class="z-depth-3">
+      <thead>
+        <th colspan="4">% 1 Hora </th>
+        <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td>Alvin</td>
+        <td>Eclair</td>
+        <td>$0.87</td>
+        <td>$0.87</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <!-- table of stocks and the benchmark ibov -->
+    <table class="z-depth-3">
+      <thead>
+        <th colspan="4">% 15 Minutos</th>
+        <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td>Alvin</td>
+        <td>Eclair</td>
+        <td>$0.87</td>
+        <td>$0.87</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- tables of 3 col -->
+  <div class="col s3 overflow-x:auto;" >
+    <table class="z-depth-3">
+      <thead>
+        <th colspan="4">% All Time High </th>
+        <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td>Alvin</td>
+        <td>Eclair</td>
+        <td>$0.87</td>
+        <td>$0.87</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+
+    <table class="z-depth-3">
+      <thead>
+        <th colspan="4">% 1D</th>
+        <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td>Alvin</td>
+        <td>Eclair</td>
+        <td>$0.87</td>
+        <td>$0.87</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- tables of 4 col -->
+  <div class="col s3 overflow-x:auto;" >
+    <table class="z-depth-3">
+      <thead>
+        <th colspan="5">% 1 Month </th>
+        <tr>
+          <th colspan="2" *ngFor="let item of typeLabel">{{item}}</th>
+          <th>Vol 30D/90D</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td>Alvin</td>
+        <td>Eclair</td>
+        <td>$0.87</td>
+        <td>$0.87</td>
+        <td>teste</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+
+    <table class="z-depth-3">
+      <thead>
+        <th colspan="4">% YTD</th>
+        <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td>Alvin</td>
+        <td>Eclair</td>
+        <td>$0.87</td>
+        <td>$0.87</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- tables of 5 col -->
+  <div class="col s1 overflow-x:auto;">
+    <!-- table of stocks and the benchmark ibov -->
+    <table class="z-depth-3">
+      <thead>
+        <th colspan="2">Lista de todos ativos</th>
+        <tr>
+          <th *ngFor="let label of typeLabel2">{{label}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td>Eclair</td>
+        <td>$0.87</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </div>
+  
+</div>
+
+<div style="color: white;">
+  <h1>teste</h1>
+</div>

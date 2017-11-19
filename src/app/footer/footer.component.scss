@@ -1,0 +1,17 @@
+$forpusFontColor: #be9836;
+$forpusBackgroundColor:#f8f8f8; 
+
+footer{
+    background-color: $forpusBackgroundColor;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding-top: 12%;
+    .container{
+        color: $forpusFontColor;
+        a{
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: $forpusFontColor;
+        }    
+    }
+
+     
+}

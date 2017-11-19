@@ -1,0 +1,28 @@
+$thFontSize: 90%;
+$tdFontSize: 80%;
+$forpusFontColor: #be9836;
+
+.z-depth-3 {
+    box-shadow: 6px 6px 10px 0 rgba(131, 114, 114, 0.075), 0 1px 18px 0 rgba(131, 114, 114, 0.12), 0 3px 5px -1px rgba(131, 114, 114, 0.3);
+}
+
+.data-table-prices{
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background-color: black;
+    table{
+        color: white;
+        td{
+            font-size: $tdFontSize;
+        } 
+        th{
+            color: #fb8e1e;
+            font-size: $thFontSize;
+        }
+        td, th{
+            padding: 1%;
+            text-align: center;
+            vertical-align: middle;
+        }
+    }
+}
