@@ -2,36 +2,67 @@ import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 
 import {  Http, RequestOptions, Headers, Response } from '@angular/http';
+import { error } from 'selenium-webdriver';
 
 @Injectable()
 export class DataService {
 
   constructor(private http: Http) { }
-
-
-  getAll(): Observable<any>{
-    return this.http.get('/api/v1/top_n_ranking?price_type_id=2&n10', 
-      this.jwt()).map(response => {
-        response.json();
-    });
-}
-
-  getById(id: number){
-    // console.log(this.jwt());
-    return this.http.get('/api/users/' + id, this.jwt()).map((response: Response) => {response.json();});
+  
+  getPricesType(){
+    let pricesTypes = this.getForpusAPIData('/api/v1/price_types', true, 'pricesTypes');
+    return pricesTypes;
   }
 
-  // create(){
-  //   return this.http.post('/api/users', user, this.jwt()).map((response: Response) => {response.json();});
-  // }
+  getSecurities(){
+    let securities = this.getForpusAPIData('/api/v1/securities', true, 'securities');
+    return securities;
+  }
 
-  // update(){
-  //   return this.http.put('/api/users/'+user.id, user, this.jwt()).map((response: Response) => {response.json();});
-  // }
+  getFrequencies(){
+    let frequencies = this.getForpusAPIData('/api/v1/frequencies', true, 'frequencies');
+    return frequencies;
+  }
 
-  // delete(id: number){
-  //   return this.http.delete('/api/users/' + id, this.jwt()).map((response: Response) => {response.json();});
-  // }
+  getTimeWeight(){
+    let timeWeight = this.getForpusAPIData('/api/v1/time_weight', true, 'timeWeight');
+    return timeWeight;
+  }
+
+  getTopRankingPrices(priceTypeId: string, nValues: string){
+    let rankingUrl = '/api/v1/top_n_ranking?price_type_id=' + priceTypeId + '&n=' + nValues;
+    let topRankingPrices = this.getForpusAPIData(rankingUrl, false, '');
+    return topRankingPrices;
+  }
+
+
+  getTopRankingFullH(priceTypeId: string, nValues: string){
+    let rankingUrl = '/api/v1/top_n_ranking_full?price_type_name=' + priceTypeId + '&n=' + nValues;
+    let topRankingPrices = this.getForpusAPIData(rankingUrl, false, '');
+    return topRankingPrices;
+  }
+
+  getTopRankingFullL(priceType: string, nValues: string){
+    let rankingUrl = '/api/v1/top_n_ranking_full?price_type_name=' + priceType + '&n=' + nValues;
+    let topRankingFullL = this.getForpusAPIData(rankingUrl, false, '');
+    return topRankingFullL;
+  }
+
+  private getForpusAPIData(urlGet: string, saveLocal: boolean, labelLocal: string){
+    return this.http.get(urlGet, this.jwt()).retry(5).map((response: Response) => {
+      let getData = response.json();
+      if(getData){
+        if(saveLocal){
+          localStorage.setItem(labelLocal,JSON.stringify(getData.data || getData));
+        }
+        return JSON.stringify(getData.data || getData);
+      }
+    },
+    err => {
+      console.log('meu erro ' + err);
+      return err;
+    });
+  }
 
   // private helper method 
   private jwt(){

@@ -22,6 +22,7 @@ import { RegisterComponent } from './register/register.component';
 import { HttpModule, BaseRequestOptions } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { PanelComponent } from './home/panel/panel.component';
+import { TableConfigComponent } from './table-config/table-config.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { PanelComponent } from './home/panel/panel.component';
     HomeComponent,
     RegisterComponent,
     PanelComponent,
+    TableConfigComponent,
   ],
   imports: [
     BrowserModule,

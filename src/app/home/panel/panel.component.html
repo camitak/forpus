@@ -48,11 +48,12 @@
         <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
       </thead>
       <tbody>
-        <tr>
-        <td>Alvin</td>
-        <td>Eclair</td>
-        <td>$0.87</td>
-        <td>$0.87</td>
+        <tr *ngFor="let prices of panels[0].resultTableH; 
+                    let lowPrices of panels[0].resultTableL" >
+          <td> <a class="modal-trigger" (click)="openModal()">{{ prices.ticker }}</a></td>
+          <td [ngStyle]="{'color': prices.pct > 0 ? '#1dcc92': 'tomato'}"> {{ prices.pct }}</td>
+          <td> <a class="modal-trigger" (click)="openModal()">{{ lowPrices.ticker }}</a></td>
+          <td [ngStyle]="{'color': lowPrices.pct > 0 ? '#1dcc92': 'tomato'}"> {{ lowPrices.pct }}</td>
         </tr>
       </tbody>
     </table>
@@ -64,11 +65,29 @@
         <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
       </thead>
       <tbody>
-        <tr>
-        <td>Alvin</td>
-        <td>Eclair</td>
-        <td>$0.87</td>
-        <td>$0.87</td>
+        <tr *ngFor="let pricesH of panels[1].resultTableH;
+                    let pricesL of panels[1].resultTableL" >
+          <td><a class="modal-trigger" (click)="openModal()">{{ pricesH.ticker }}</a></td>
+          <td [ngStyle]="{'color': pricesH.pct > 0 ? '#1dcc92': 'tomato'}">{{ pricesH.pct }}</td>
+          <td><a class="modal-trigger" (click)="openModal()">{{ pricesL.ticker }}</a></td>
+          <td [ngStyle]="{'color': pricesL.pct > 0 ? '#1dcc92': 'tomato'}">{{ pricesL.pct }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <!-- table of stocks and the benchmark ibov -->
+    <table class="z-depth-3">
+      <thead>
+        <th colspan="4">% 2D</th>
+        <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pricesH of panels[2].resultTableH;
+                    let pricesL of panels[2].resultTableL" >
+          <td><a class="modal-trigger" (click)="openModal()">{{ pricesH.ticker }}</a></td>
+          <td [ngStyle]="{'color': pricesH.pct > 0 ? '#1dcc92': 'tomato'}">{{ pricesH.pct }}</td>
+          <td><a class="modal-trigger" (click)="openModal()">{{ pricesL.ticker }}</a></td>
+          <td [ngStyle]="{'color': pricesL.pct > 0 ? '#1dcc92': 'tomato'}">{{ pricesL.pct }}</td>
         </tr>
       </tbody>
     </table>
@@ -82,11 +101,12 @@
         <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
       </thead>
       <tbody>
-        <tr>
-        <td>Alvin</td>
-        <td>Eclair</td>
-        <td>$0.87</td>
-        <td>$0.87</td>
+        <tr *ngFor="let pricesH of panels[3].resultTableH;
+                    let pricesL of panels[3].resultTableL" >
+          <td><a class="modal-trigger" (click)="openModal()">{{pricesH.ticker}}</a></td>
+          <td [ngStyle]="{'color': pricesH.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesH.pct}}</td>
+          <td><a class="modal-trigger" (click)="openModal()">{{pricesL.ticker}}</a></td>
+          <td [ngStyle]="{'color': pricesL.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesL.pct}}</td>
         </tr>
       </tbody>
     </table>
@@ -98,11 +118,29 @@
         <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
       </thead>
       <tbody>
-        <tr>
-        <td>Alvin</td>
-        <td>Eclair</td>
-        <td>$0.87</td>
-        <td>$0.87</td>
+        <tr *ngFor="let pricesH of panels[4].resultTableH;
+                  let pricesL of panels[4].resultTableL" >
+          <td><a class="modal-trigger" (click)="openModal()">{{pricesH.ticker}}</a></td>
+          <td [ngStyle]="{'color': pricesH.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesH.pct}}</td>
+          <td><a class="modal-trigger" (click)="openModal()">{{pricesL.ticker}}</a></td>
+          <td [ngStyle]="{'color': pricesL.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesL.pct}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    
+    <table class="z-depth-3">
+      <thead>
+        <th colspan="4">% 3D</th>
+        <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pricesH of panels[5].resultTableH;
+                  let pricesL of panels[5].resultTableL" >
+          <td><a class="modal-trigger" (click)="openModal()">{{pricesH.ticker}}</a></td>
+          <td [ngStyle]="{'color': pricesH.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesH.pct}}</td>
+          <td><a class="modal-trigger" (click)="openModal()">{{pricesL.ticker}}</a></td>
+          <td [ngStyle]="{'color': pricesL.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesL.pct}}</td>
         </tr>
       </tbody>
     </table>
@@ -119,12 +157,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-        <td>Alvin</td>
-        <td>Eclair</td>
-        <td>$0.87</td>
-        <td>$0.87</td>
-        <td>teste</td>
+        <tr *ngFor="let pricesH of panels[6].resultTableH;
+              let pricesL of panels[6].resultTableL" >
+          <td><a class="modal-trigger" (click)="openModal()">{{pricesH.ticker}}</a></td>
+          <td [ngStyle]="{'color': pricesH.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesH.pct}}</td>
+          <td><a class="modal-trigger" (click)="openModal()">{{pricesL.ticker}}</a></td>
+          <td [ngStyle]="{'color': pricesL.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesL.pct}}</td>
+          <td [ngStyle]="{'color': pricesL.pct > 0 ? '#1dcc92': 'tomato'}"> {{ 1/2 }} </td>
         </tr>
       </tbody>
     </table>
@@ -136,12 +175,30 @@
         <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
       </thead>
       <tbody>
-        <tr>
-        <td>Alvin</td>
-        <td>Eclair</td>
-        <td>$0.87</td>
-        <td>$0.87</td>
-        </tr>
+        <tr *ngFor="let pricesH of panels[7].resultTableH;
+              let pricesL of panels[7].resultTableL" >
+          <td><a class="modal-trigger" (click)="openModal()">{{pricesH.ticker}}</a></td>
+          <td [ngStyle]="{'color': pricesH.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesH.pct}}</td>
+          <td><a class="modal-trigger" (click)="openModal()">{{pricesL.ticker}}</a></td>
+          <td [ngStyle]="{'color': pricesL.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesL.pct}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <br>
+    
+    <table class="z-depth-3">
+      <thead>
+        <th colspan="4">% 5D</th>
+        <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pricesH of panels[8].resultTableH;
+              let pricesL of panels[8].resultTableL" >
+          <td><a class="modal-trigger" (click)="openModal()">{{pricesH.ticker}}</a></td>
+          <td [ngStyle]="{'color': pricesH.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesH.pct}}</td>
+          <td><a class="modal-trigger" (click)="openModal()">{{pricesL.ticker}}</a></td>
+          <td [ngStyle]="{'color': pricesL.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesL.pct}}</td>
+      </tr>
       </tbody>
     </table>
   </div>
@@ -168,6 +225,13 @@
   
 </div>
 
-<div style="color: white;">
-  <h1>teste</h1>
+<!-- Modal Structure -->
+<div id="modal1" class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+ <div class="modal-content">
+   <h4>Modal Header</h4>
+   <p>A bunch of text</p>
+ </div>
+ <div class="modal-footer">
+   <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Fechar</a>
+ </div>
 </div>

@@ -10,16 +10,28 @@ $forpusFontColor: #be9836;
     padding-top: 2%;
     padding-bottom: 2%;
     background-color: black;
+    
     table{
         color: white;
+        border-radius: 0;
         td{
             font-size: $tdFontSize;
+            a{
+                color: white;
+                // text-decoration: underline;
+                cursor: pointer;
+            }
         } 
         th{
+            background-color: #1f1e1a;
             color: #fb8e1e;
             font-size: $thFontSize;
         }
+        tr:nth-of-type(even){
+            background-color: #1f1e1a;
+        }
         td, th{
+            border-radius: 0;
             padding: 1%;
             text-align: center;
             vertical-align: middle;

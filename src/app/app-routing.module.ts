@@ -1,3 +1,4 @@
+import { TableConfigComponent } from './table-config/table-config.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'config/user', component: HomeComponent },
+  { path: 'config/panel-config', component: TableConfigComponent },
   { path: 'config/hour', component: HomeComponent }, 
 
   // otherwise redirect to home
