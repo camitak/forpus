@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "ng build --aot -prod",
-    "start": "node Server.js && ng serve --proxy-config proxy.conf.json"
+    "start": "node Server.js"
   },
   "engines": {
     "node": "~8.9.1",
