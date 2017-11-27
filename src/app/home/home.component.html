@@ -2,7 +2,6 @@
     <div class="shift-down row">
         <div class="input-field col s4">
             <select #selectRefreshTime materialize="material_select" 
-            [materializeSelectOptions]="selectOptions"
             (change)="onChangeSelect(selectRefreshTime.value)">
                 <option *ngFor="let timeItem of refreshTimes" [value]="timeItem.time">
                     {{timeItem.timeLabel}}

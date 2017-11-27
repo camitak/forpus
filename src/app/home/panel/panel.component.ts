@@ -48,7 +48,7 @@ export class PanelComponent implements OnInit {
 // 
 
   private nRanking: string = '10';
-  private panels: Panel[] = 
+  panels: Panel[] = 
   [
     {nameP: '1', panelPriceType: '1_HOUR_PRICE_CHANGE_RT',
      nValuesRankingH: '10', resultTableH: '',
