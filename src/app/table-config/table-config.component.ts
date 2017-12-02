@@ -1,4 +1,6 @@
+import { DataService } from './../services/data.service';
 import { Component, OnInit } from '@angular/core';
+import { Panel } from '../home/panel/panel';
 
 @Component({
   selector: 'app-table-config',
@@ -7,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableConfigComponent implements OnInit {
 
-  constructor() { }
+  panels: Panel[];
+
+  constructor(
+    private dataService: DataService) { }
 
   ngOnInit() {
-    
+    this.panels = this.dataService.getPanels();
   }
 
 }

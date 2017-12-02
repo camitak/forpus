@@ -6,6 +6,17 @@ $forpusFontColor: #be9836;
     box-shadow: 6px 6px 10px 0 rgba(131, 114, 114, 0.075), 0 1px 18px 0 rgba(131, 114, 114, 0.12), 0 3px 5px -1px rgba(131, 114, 114, 0.3);
 }
 
+.modal{
+    h4{
+        color: $forpusFontColor;
+        font-weight: bold;
+    }
+
+    p{
+        font-size: 120%;
+    }
+}
+
 .data-table-prices{
     padding-top: 2%;
     padding-bottom: 2%;

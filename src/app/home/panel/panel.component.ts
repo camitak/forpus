@@ -1,10 +1,11 @@
+import { TableConfigComponent } from './../../table-config/table-config.component';
 import { getTestBed } from '@angular/core/testing';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { Subscription } from 'rxjs/Subscription';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import {MaterializeAction} from 'angular2-materialize';
+import { MaterializeAction } from 'angular2-materialize';
 import { Panel } from './panel';
 
 import 'rxjs/add/operator/retry';
@@ -41,50 +42,25 @@ export class PanelComponent implements OnInit {
   private dataRanking: any;
 
   dataPanel1Hr: any;
-
+  securitySelected: string;
+  securitySInfo: any;
 // 
 // Configuracoes - que ficarao parametrizaveis
 // 
 // 
 
   private nRanking: string = '10';
-  panels: Panel[] = 
-  [
-    {nameP: '1', panelPriceType: '1_HOUR_PRICE_CHANGE_RT',
-     nValuesRankingH: '10', resultTableH: '',
-     nValuesRankingL: '10', resultTableL: ''},
-    {nameP: '2', panelPriceType: '15_MINUTE_PRICE_CHANGE_RT', 
-     nValuesRankingH: '10', resultTableH: '',
-     nValuesRankingL: '10', resultTableL: ''},
-    {nameP: '3', panelPriceType: 'CHG_PCT_2D', 
-     nValuesRankingH: '10', resultTableH: '',
-     nValuesRankingL: '10', resultTableL: ''},
-    {nameP: '4', panelPriceType: 'ALL_TIME_HIGH_PERCENT', 
-     nValuesRankingH: '10', resultTableH: '',
-     nValuesRankingL: '10', resultTableL: ''},
-    {nameP: '5', panelPriceType: 'CHG_PCT_1D', 
-     nValuesRankingH: '10', resultTableH: '',
-     nValuesRankingL: '10', resultTableL: ''},
-    {nameP: '6', panelPriceType: 'CHG_PCT_3D', 
-     nValuesRankingH: '10', resultTableH: '',
-     nValuesRankingL: '10', resultTableL: ''},
-    {nameP: '7', panelPriceType: 'CHG_PCT_1M', 
-     nValuesRankingH: '10', resultTableH: '',
-     nValuesRankingL: '10', resultTableL: ''},
-    {nameP: '8', panelPriceType: 'CHG_PCT_YTD', 
-     nValuesRankingH: '10', resultTableH: '',
-     nValuesRankingL: '10', resultTableL: ''},
-    {nameP: '9', panelPriceType: 'CHG_PCT_5D', 
-     nValuesRankingH: '10', resultTableH: '',
-     nValuesRankingL: '10', resultTableL:''}
-  ];
 
-  constructor(private dataService: DataService) { }
+  panels: Panel[];
+  constructor(
+    private dataService: DataService,
+  ) { }
 
   ngOnInit() {
-    
+
     this.getPricesTypes();
     this.getSecurities();
+    this.panels = this.dataService.getPanels();
     for(let i=0; i<this.panels.length; i++ ){
 
       (function (parent, idx) {
@@ -137,36 +113,32 @@ export class PanelComponent implements OnInit {
 
 
   modalActions = new EventEmitter<string|MaterializeAction>();
-  openModal() {
+  openModal(valueSelected: any) {
     this.modalActions.emit({action:"modal",params:['open']});
+    this.securitySelected = valueSelected;
+    let securities = localStorage.getItem('securities');
+    
+    let secInfo = this.securities.reduce((a, security) => {
+      if (security.attributes.ticker == this.securitySelected) {
+        a.tickerBloomberg = security.attributes['ticker-bloomberg'];
+        let nameB = a.tickerBloomberg.split(" ");
+        let url = 'https://www.bloomberg.com/quote/'
+        a.siteBloomberg = url.concat(nameB[0],':', nameB[1]);
+      }
+      return a;
+    },{});
+    this.securitySInfo = secInfo;
+
+    console.log(this.securitySInfo);
   }
+
+
   closeModal() {
     this.modalActions.emit({action:"modal",params:['close']});
   }
 
 
 
-
   clickTeste(){
-  //  let teste = this.getTopRankingPrices('1', this.panels[0].nValuesRanking);
-    // console.log(this.panels);
-    // console.log(this.panels);
-  //   let tempDataPanel = this.dataRanking;
-
-  //   // treat table
-  //   for(let i=0; i<10; i++){
-  //     let id_search = tempDataPanel[i]["attributes"]["security-id"];
-  //     let ticker = this.securities.reduce((a, security) => {
-  //       if (security.id == id_search) {
-  //         a.ticker = security.attributes.ticker;
-
-  //       }
-  //       return a;
-  //     },{});
-  //     console.log(ticker);
-
-      
-  //     // console.log(tempDataPanel[i]["attributes"]["price-value"]);
-  //   }
   }
 }

@@ -1,3 +1,4 @@
+import { Panel } from './../home/panel/panel';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 
@@ -47,6 +48,42 @@ export class DataService {
     let topRankingFullL = this.getForpusAPIData(rankingUrl, false, '');
     return topRankingFullL;
   }
+
+  getPanels(){
+    let panels: Panel[] = 
+    [
+      {nameP: '1', panelPriceType: '1_HOUR_PRICE_CHANGE_RT',
+       nValuesRankingH: '10', resultTableH: '',
+       nValuesRankingL: '10', resultTableL: ''},
+      {nameP: '2', panelPriceType: '15_MINUTE_PRICE_CHANGE_RT', 
+       nValuesRankingH: '10', resultTableH: '',
+       nValuesRankingL: '10', resultTableL: ''},
+      {nameP: '3', panelPriceType: 'CHG_PCT_2D', 
+       nValuesRankingH: '10', resultTableH: '',
+       nValuesRankingL: '10', resultTableL: ''},
+      {nameP: '4', panelPriceType: 'ALL_TIME_HIGH_PERCENT', 
+       nValuesRankingH: '10', resultTableH: '',
+       nValuesRankingL: '10', resultTableL: ''},
+      {nameP: '5', panelPriceType: 'CHG_PCT_1D', 
+       nValuesRankingH: '10', resultTableH: '',
+       nValuesRankingL: '10', resultTableL: ''},
+      {nameP: '6', panelPriceType: 'CHG_PCT_3D', 
+       nValuesRankingH: '10', resultTableH: '',
+       nValuesRankingL: '10', resultTableL: ''},
+      {nameP: '7', panelPriceType: 'CHG_PCT_1M', 
+       nValuesRankingH: '10', resultTableH: '',
+       nValuesRankingL: '10', resultTableL: ''},
+      {nameP: '8', panelPriceType: 'CHG_PCT_YTD', 
+       nValuesRankingH: '10', resultTableH: '',
+       nValuesRankingL: '10', resultTableL: ''},
+      {nameP: '9', panelPriceType: 'CHG_PCT_5D', 
+       nValuesRankingH: '10', resultTableH: '',
+       nValuesRankingL: '10', resultTableL:''}
+    ];
+    return panels;
+  }
+
+
 
   private getForpusAPIData(urlGet: string, saveLocal: boolean, labelLocal: string){
     return this.http.get(urlGet, this.jwt()).retry(5).map((response: Response) => {
