@@ -1,6 +1,6 @@
-import { DataService } from './../services/data.service';
+import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
-import { Panel } from '../home/panel/panel';
+import { Panel } from '../../home/panel/panel';
 
 @Component({
   selector: 'app-table-config',

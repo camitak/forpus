@@ -3,9 +3,18 @@
   <div class="nav-wrapper">
     <a class="brand-logo">FORPUS</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
+      
+      
       <!-- Painel and home  -->
       <li *ngIf="showMenu" routerLinkActive="active">
-        <a routerLink="painel">Painel</a>
+        <a materialize="dropdown" class="dropdown-button" routerLink="painel"
+         data-activates="dropdownPanel" data-belowOrigin=true
+         dropdown data-hover="true" data-constrainWidth=false>Painel</a>
+         <ul id="dropdownPanel" class="dropdown-content">
+            <li><a [routerLink]="[painel]">Monitor</a></li>
+            <li><a [routerLink]="[painel]">Resultados</a></li>
+            <li><a [routerLink]="[painel]">Comparação</a></li>
+         </ul>
       </li>
       
       <!-- Config menu -->

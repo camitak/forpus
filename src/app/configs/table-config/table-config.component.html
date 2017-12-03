@@ -3,7 +3,7 @@
     <ul class="collection with-header">
       <li class="collection-header"><h4>Painéis</h4></li>
       <a class="collection-item panelsLink" *ngFor="let panel of panels" >
-        <div> <a [routerLink]="[panel.nameP]" >{{panel.nameP}}</a> 
+        <div> <a [routerLink]="[panel.id]" >{{panel.nameP}}</a> 
           <a class="secondary-content"><i class="setting-icon material-icons">settings</i></a>
         </div>
       </a>

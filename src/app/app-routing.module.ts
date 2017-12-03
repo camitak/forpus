@@ -1,5 +1,5 @@
-import { PanelDetailComponent } from './home/panel-detail/panel-detail.component';
-import { TableConfigComponent } from './table-config/table-config.component';
+import { PanelDetailComponent } from './configs/panel-detail/panel-detail.component';
+import { TableConfigComponent } from './configs/table-config/table-config.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
@@ -11,9 +11,7 @@ import { PanelComponent } from './home/panel/panel.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'painel', component: PanelComponent, canActivate: [AuthGuard], children:[
-    { path: ':nameP', component: PanelDetailComponent, canLoad: [AuthGuard] }
-  ]}, 
+  { path: 'painel', component: HomeComponent, canActivate: [AuthGuard] }, 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 
@@ -22,7 +20,7 @@ const routes: Routes = [
     { path: 'hour', component: TableConfigComponent, canLoad: [AuthGuard]}
   ]},
   { path: 'config/panel-config', component: TableConfigComponent, canActivate: [AuthGuard], children:[
-    { path: ':nameP', component: PanelDetailComponent }
+    { path: ':id', component: PanelDetailComponent }
   ]},
   
   // otherwise redirect to home

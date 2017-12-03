@@ -22,8 +22,8 @@ import { RegisterComponent } from './register/register.component';
 import { HttpModule, BaseRequestOptions } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { PanelComponent } from './home/panel/panel.component';
-import { TableConfigComponent } from './table-config/table-config.component';
-import { PanelDetailComponent } from './home/panel-detail/panel-detail.component';
+import { TableConfigComponent } from './configs/table-config/table-config.component';
+import { PanelDetailComponent } from './configs/panel-detail/panel-detail.component';
 
 
 @NgModule({

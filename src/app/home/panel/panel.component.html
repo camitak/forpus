@@ -40,170 +40,35 @@
   </div>
 
   <!-- tables of 2 col -->
-  <div class="col s3 overflow-x:auto;" >
-    <!-- table of stocks and the benchmark ibov -->
-    <table class="z-depth-3">
-      <thead>
-        <th colspan="4">% 1 Hora </th>
-        <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
-      </thead>
-      <tbody>
-      
-        <tr *ngFor="let prices of 
-          (panels[0].resultTableH.length > panels[0].resultTableL.length ? 
-          panels[0].resultTableH : panels[0].resultTableL); 
-          let i = index">
-          <td> <a class="modal-trigger" (click)="openModal(panels[0].resultTableH[i]?.ticker)">{{ panels[0].resultTableH[i]?.ticker }}</a></td>
-          <td [ngStyle]="{'color': panels[0].resultTableH[i]?.pct > 0 ? '#1dcc92': 'tomato'}"> {{ panels[0].resultTableH[i]?.pct }}</td>
-          <td> <a class="modal-trigger" (click)="openModal(panels[0].resultTableL[i]?.ticker)">{{ panels[0].resultTableL[i]?.ticker }}</a></td>
-          <td [ngStyle]="{'color': panels[0].resultTableL[i]?.pct > 0 ? '#1dcc92': 'tomato'}"> {{ panels[0].resultTableL[i]?.pct }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <br>
-    <!-- table of stocks and the benchmark ibov -->
-    <table class="z-depth-3">
-      <thead>
-        <th colspan="4">% 15 Minutos</th>
-        <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let pricesH of panels[1].resultTableH;
-                    let pricesL of panels[1].resultTableL" >
-          <td><a class="modal-trigger" (click)="openModal(pricesH.ticker)">{{ pricesH.ticker }}</a></td>
-          <td [ngStyle]="{'color': pricesH.pct > 0 ? '#1dcc92': 'tomato'}">{{ pricesH.pct }}</td>
-          <td><a class="modal-trigger" (click)="openModal(pricesL.ticker)">{{ pricesL.ticker }}</a></td>
-          <td [ngStyle]="{'color': pricesL.pct > 0 ? '#1dcc92': 'tomato'}">{{ pricesL.pct }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <br>
-    <!-- table of stocks and the benchmark ibov -->
-    <table class="z-depth-3">
-      <thead>
-        <th colspan="4">% 2D</th>
-        <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let pricesH of panels[2].resultTableH;
-                    let pricesL of panels[2].resultTableL" >
-          <td><a class="modal-trigger" (click)="openModal(pricesH.ticker)">{{ pricesH.ticker }}</a></td>
-          <td [ngStyle]="{'color': pricesH.pct > 0 ? '#1dcc92': 'tomato'}">{{ pricesH.pct }}</td>
-          <td><a class="modal-trigger" (click)="openModal(pricesL.ticker)">{{ pricesL.ticker }}</a></td>
-          <td [ngStyle]="{'color': pricesL.pct > 0 ? '#1dcc92': 'tomato'}">{{ pricesL.pct }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- tables of 3 col -->
-  <div class="col s3 overflow-x:auto;" >
-    <table class="z-depth-3">
-      <thead>
-        <th colspan="4">% All Time High </th>
-        <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let pricesH of panels[3].resultTableH;
-                    let pricesL of panels[3].resultTableL" >
-          <td><a class="modal-trigger" (click)="openModal(pricesH.ticker)">{{pricesH.ticker}}</a></td>
-          <td [ngStyle]="{'color': pricesH.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesH.pct}}</td>
-          <td><a class="modal-trigger" (click)="openModal(pricesL.ticker)">{{pricesL.ticker}}</a></td>
-          <td [ngStyle]="{'color': pricesL.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesL.pct}}</td>
-        </tr>
-      </tbody>
-    </table>
-    <br>
-
-    <table class="z-depth-3">
-      <thead>
-        <th colspan="4">% 1D</th>
-        <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let pricesH of panels[4].resultTableH;
-                  let pricesL of panels[4].resultTableL" >
-          <td><a class="modal-trigger" (click)="openModal(pricesH.ticker)">{{pricesH.ticker}}</a></td>
-          <td [ngStyle]="{'color': pricesH.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesH.pct}}</td>
-          <td><a class="modal-trigger" (click)="openModal(pricesL.ticker)">{{pricesL.ticker}}</a></td>
-          <td [ngStyle]="{'color': pricesL.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesL.pct}}</td>
-        </tr>
-      </tbody>
-    </table>
-    <br>
-    
-    <table class="z-depth-3">
-      <thead>
-        <th colspan="4">% 3D</th>
-        <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let pricesH of panels[5].resultTableH;
-                  let pricesL of panels[5].resultTableL" >
-          <td><a class="modal-trigger" (click)="openModal(pricesH.ticker)">{{pricesH.ticker}}</a></td>
-          <td [ngStyle]="{'color': pricesH.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesH.pct}}</td>
-          <td><a class="modal-trigger" (click)="openModal(pricesL.ticker)">{{pricesL.ticker}}</a></td>
-          <td [ngStyle]="{'color': pricesL.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesL.pct}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- tables of 4 col -->
-  <div class="col s3 overflow-x:auto;" >
-    <table class="z-depth-3">
-      <thead>
-        <th colspan="5">% 1 Month </th>
-        <tr>
-          <th colspan="2" *ngFor="let item of typeLabel">{{item}}</th>
-          <th>Vol 30D/90D</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let pricesH of panels[6].resultTableH;
-              let pricesL of panels[6].resultTableL" >
-          <td><a class="modal-trigger" (click)="openModal(pricesH.ticker)">{{pricesH.ticker}}</a></td>
-          <td [ngStyle]="{'color': pricesH.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesH.pct}}</td>
-          <td><a class="modal-trigger" (click)="openModal(pricesL.ticker)">{{pricesL.ticker}}</a></td>
-          <td [ngStyle]="{'color': pricesL.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesL.pct}}</td>
-          <td [ngStyle]="{'color': pricesL.pct > 0 ? '#1dcc92': 'tomato'}"> {{ 1/2 }} </td>
-        </tr>
-      </tbody>
-    </table>
-    <br>
-
-    <table class="z-depth-3">
-      <thead>
-        <th colspan="4">% YTD</th>
-        <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let pricesH of panels[7].resultTableH;
-              let pricesL of panels[7].resultTableL" >
-          <td><a class="modal-trigger" (click)="openModal(pricesH.ticker)">{{pricesH.ticker}}</a></td>
-          <td [ngStyle]="{'color': pricesH.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesH.pct}}</td>
-          <td><a class="modal-trigger" (click)="openModal(pricesL.ticker)">{{pricesL.ticker}}</a></td>
-          <td [ngStyle]="{'color': pricesL.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesL.pct}}</td>
-        </tr>
-      </tbody>
-    </table>
-    <br>
-    
-    <table class="z-depth-3">
-      <thead>
-        <th colspan="4">% 5D</th>
-        <tr><th colspan="2" *ngFor="let item of typeLabel">{{item}}</th></tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let pricesH of panels[8].resultTableH;
-              let pricesL of panels[8].resultTableL" >
-          <td><a class="modal-trigger" (click)="openModal(pricesH.ticker)">{{pricesH.ticker}}</a></td>
-          <td [ngStyle]="{'color': pricesH.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesH.pct}}</td>
-          <td><a class="modal-trigger" (click)="openModal(pricesL.ticker)">{{pricesL.ticker}}</a></td>
-          <td [ngStyle]="{'color': pricesL.pct > 0 ? '#1dcc92': 'tomato'}">{{pricesL.pct}}</td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="col s9 overflow-x:auto;">
+    <div class="col s4 overflow-x:auto;" 
+    *ngFor="let panel of panels; 
+    let i = index">
+      <!-- table of stocks and the benchmark ibov -->
+      <table class="z-depth-3">
+          <thead>
+            <th colspan="4" *ngIf="panels[i].id != 3" > {{ panels[i].nameP }} </th>
+            <th colspan="5" *ngIf="panels[i].id == 3" > {{ panels[i].nameP }} </th>
+            <tr>
+              <th colspan="2" *ngFor="let item of typeLabel">{{ item }}</th>
+              <th *ngIf="panels[i].id == 3" > {{ "VOL 30D/90D" }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prices of 
+              (panels[i].resultTableH.length > panels[i].resultTableL.length ? 
+              panels[i].resultTableH : panels[i].resultTableL); 
+              let j = index">
+              <td> <a class="modal-trigger" (click)="openModal(panels[i].resultTableH[j]?.ticker)">{{ panels[i].resultTableH[j]?.ticker }}</a></td>
+              <td [ngStyle]="{'color': panels[i].resultTableH[j]?.pct > 0 ? '#1dcc92': 'tomato'}"> {{ panels[i].resultTableH[j]?.pct }}</td>
+              <td> <a class="modal-trigger" (click)="openModal(panels[i].resultTableL[j]?.ticker)">{{ panels[i].resultTableL[j]?.ticker }}</a></td>
+              <td [ngStyle]="{'color': panels[i].resultTableL[j]?.pct > 0 ? '#1dcc92': 'tomato'}"> {{ panels[i].resultTableL[j]?.pct }}</td>
+              <td *ngIf="panels[i].id == 3"> </td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+    </div>
   </div>
 
   <!-- tables of 5 col -->
@@ -242,9 +107,4 @@
    <a class="waves-effect waves-blue btn-flat" (click)="closeModal()">Fechar</a>
  </div>
 </div>
-
-<div>
-  
-</div>
-
 

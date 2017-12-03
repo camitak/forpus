@@ -1,4 +1,5 @@
 export class Panel{
+    id: string;
     nameP: string;
     panelPriceType: string;
     nValuesRankingH: string;

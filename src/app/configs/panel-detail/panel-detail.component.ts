@@ -1,4 +1,5 @@
 import { DataService } from './../../services/data.service';
+
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -20,7 +21,7 @@ export class PanelDetailComponent implements OnInit {
   ngOnInit() {
     //get parent activated route info
     this.subscriptionR = this.route.params.subscribe((params: any) => {
-      let id = params['nameP'];
+      let id = params['id'];
       this.panelsInfo = this.dataService.getPanels();
       if(this.panelsInfo === null){
         this.panelsInfo = [];

@@ -1,4 +1,4 @@
-import { TableConfigComponent } from './../../table-config/table-config.component';
+import { TableConfigComponent } from './../../configs/table-config/table-config.component';
 import { getTestBed } from '@angular/core/testing';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { DataService } from '../../services/data.service';
@@ -8,7 +8,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MaterializeAction } from 'angular2-materialize';
 import { Panel } from './panel';
 
-import 'rxjs/add/operator/retry';
+import "rxjs/Rx";
+// import 'rxjs/add/operator/retry';
 
 @Component({
   selector: 'app-panel',
@@ -50,8 +51,8 @@ export class PanelComponent implements OnInit {
 // 
 
   private nRanking: string = '10';
-
   panels: Panel[];
+
   constructor(
     private dataService: DataService,
   ) { }
@@ -66,7 +67,8 @@ export class PanelComponent implements OnInit {
       (function (parent, idx) {
         parent.dataService.getTopRankingFullH(
           parent.panels[idx].panelPriceType, 
-          parent.panels[idx].nValuesRankingH).subscribe(rkdataH => {
+          parent.panels[idx].nValuesRankingH)
+          .subscribe(rkdataH => {
             parent.panels[idx].resultTableH = JSON.parse(rkdataH || '');  
           });
         parent.dataService.getTopRankingFullL(
@@ -108,9 +110,6 @@ export class PanelComponent implements OnInit {
       }
     );
   }
-
-
-
 
   modalActions = new EventEmitter<string|MaterializeAction>();
   openModal(valueSelected: any) {

@@ -4,10 +4,13 @@ import { Injectable } from '@angular/core';
 
 import {  Http, RequestOptions, Headers, Response } from '@angular/http';
 import { error } from 'selenium-webdriver';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class DataService {
 
+  public data$: BehaviorSubject<any> = new BehaviorSubject({});
+  
   constructor(private http: Http) { }
   
   getPricesType(){
@@ -52,31 +55,31 @@ export class DataService {
   getPanels(){
     let panels: Panel[] = 
     [
-      {nameP: '1', panelPriceType: '1_HOUR_PRICE_CHANGE_RT',
+      {id: '1', nameP: '% 1 Hora', panelPriceType: '1_HOUR_PRICE_CHANGE_RT',
        nValuesRankingH: '10', resultTableH: '',
        nValuesRankingL: '10', resultTableL: ''},
-      {nameP: '2', panelPriceType: '15_MINUTE_PRICE_CHANGE_RT', 
+      {id: '2', nameP: '% ALL TIME HIGH', panelPriceType: 'ALL_TIME_HIGH_PERCENT', 
        nValuesRankingH: '10', resultTableH: '',
        nValuesRankingL: '10', resultTableL: ''},
-      {nameP: '3', panelPriceType: 'CHG_PCT_2D', 
+      {id: '3', nameP: '% 1 MONTH', panelPriceType: 'CHG_PCT_1M', 
        nValuesRankingH: '10', resultTableH: '',
        nValuesRankingL: '10', resultTableL: ''},
-      {nameP: '4', panelPriceType: 'ALL_TIME_HIGH_PERCENT', 
+      {id: '4', nameP: '% 15 MINUTOS', panelPriceType: '15_MINUTE_PRICE_CHANGE_RT', 
        nValuesRankingH: '10', resultTableH: '',
        nValuesRankingL: '10', resultTableL: ''},
-      {nameP: '5', panelPriceType: 'CHG_PCT_1D', 
+      {id: '5', nameP: '% 1D', panelPriceType: 'CHG_PCT_1D', 
        nValuesRankingH: '10', resultTableH: '',
        nValuesRankingL: '10', resultTableL: ''},
-      {nameP: '6', panelPriceType: 'CHG_PCT_3D', 
+      {id: '6', nameP: '% YTD', panelPriceType: 'CHG_PCT_YTD', 
        nValuesRankingH: '10', resultTableH: '',
        nValuesRankingL: '10', resultTableL: ''},
-      {nameP: '7', panelPriceType: 'CHG_PCT_1M', 
+      {id: '7', nameP: '% 2D', panelPriceType: 'CHG_PCT_2D', 
        nValuesRankingH: '10', resultTableH: '',
        nValuesRankingL: '10', resultTableL: ''},
-      {nameP: '8', panelPriceType: 'CHG_PCT_YTD', 
+      {id: '8', nameP: '% 3D', panelPriceType: 'CHG_PCT_3D', 
        nValuesRankingH: '10', resultTableH: '',
        nValuesRankingL: '10', resultTableL: ''},
-      {nameP: '9', panelPriceType: 'CHG_PCT_5D', 
+      {id: '9', nameP: '% 5D', panelPriceType: 'CHG_PCT_5D', 
        nValuesRankingH: '10', resultTableH: '',
        nValuesRankingL: '10', resultTableL:''}
     ];
