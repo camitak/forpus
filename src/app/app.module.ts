@@ -24,6 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { PanelComponent } from './home/panel/panel.component';
 import { TableConfigComponent } from './configs/table-config/table-config.component';
 import { PanelDetailComponent } from './configs/panel-detail/panel-detail.component';
+import { PanelResultComponent } from './home/panel-result/panel-result.component';
+import { PanelFundComponent } from './home/panel-fund/panel-fund.component';
 
 
 @NgModule({
@@ -37,6 +39,8 @@ import { PanelDetailComponent } from './configs/panel-detail/panel-detail.compon
     PanelComponent,
     TableConfigComponent,
     PanelDetailComponent,
+    PanelResultComponent,
+    PanelFundComponent,
   ],
   imports: [
     BrowserModule,

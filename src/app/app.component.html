@@ -7,26 +7,27 @@
       
       <!-- Painel and home  -->
       <li *ngIf="showMenu" routerLinkActive="active">
-        <a materialize="dropdown" class="dropdown-button" routerLink="painel"
+        <a materialize="dropdown" class="dropdown-button"
          data-activates="dropdownPanel" data-belowOrigin=true
-         dropdown data-hover="true" data-constrainWidth=false>Painel</a>
+         dropdown data-hover="true" data-constrainWidth=false
+         [routerLink]="['panel/']" routerLinkActive="active">Painel</a>
          <ul id="dropdownPanel" class="dropdown-content">
-            <li><a [routerLink]="[painel]">Monitor</a></li>
-            <li><a [routerLink]="[painel]">Resultados</a></li>
-            <li><a [routerLink]="[painel]">Comparação</a></li>
+            <li><a [routerLink]="['panel/monitor']" routerLinkActive="active">Monitor</a></li>
+            <li><a [routerLink]="['panel/result']" routerLinkActive="active">Resultados</a></li>
+            <li><a [routerLink]="['panel/fund']" routerLinkActive="active">Comparação</a></li>
          </ul>
       </li>
       
       <!-- Config menu -->
       <li *ngIf="showMenu" routerLinkActive="active">
         <a materialize="dropdown" class="dropdown-button" routerLink="config"
-         data-activates="dropdownConfig" data-belowOrigin=true
+         data-activates="dropdownConfig" data-belowOrigin=true routerLinkActive="active"
          dropdown data-hover="true">Configurações</a>
          <!-- Dropdown Structure -->
         <ul id="dropdownConfig" class="dropdown-content">
-          <li><a [routerLink]="['config/user']">Usuário</a></li>
-          <li><a [routerLink]="['config/panel-config']">Painel</a></li>
-          <li><a [routerLink]="['config/hour']">Hora</a></li>
+          <li><a [routerLink]="['config/user']" routerLinkActive="active">Usuário</a></li>
+          <li><a [routerLink]="['config/panel-config']" routerLinkActive="active">Painel</a></li>
+          <li><a [routerLink]="['config/hour']" routerLinkActive="active">Hora</a></li>
         </ul>
       </li>
 

@@ -8,10 +8,17 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { PanelComponent } from './home/panel/panel.component';
+import { PanelResultComponent } from './home/panel-result/panel-result.component';
+import { PanelFundComponent } from './home/panel-fund/panel-fund.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'painel', component: HomeComponent, canActivate: [AuthGuard] }, 
+  { path: 'panel', component: HomeComponent, canActivate: [AuthGuard], children:[
+    { path: 'monitor', component: PanelComponent, canLoad: [AuthGuard] },
+    { path: 'result', component: PanelResultComponent, canLoad: [AuthGuard] }, 
+    { path: 'fund', component: PanelFundComponent, canLoad: [AuthGuard] },
+    { path: '', component: PanelComponent, canLoad: [AuthGuard] },
+  ]}, 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 
@@ -28,7 +35,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: false })],
+  imports: [RouterModule.forRoot(routes, {enableTracing: false, useHash: false })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

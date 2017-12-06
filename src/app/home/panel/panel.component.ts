@@ -9,6 +9,7 @@ import { MaterializeAction } from 'angular2-materialize';
 import { Panel } from './panel';
 
 import "rxjs/Rx";
+import { Router, ActivatedRoute } from '@angular/router';
 // import 'rxjs/add/operator/retry';
 
 @Component({
@@ -49,15 +50,23 @@ export class PanelComponent implements OnInit {
 // Configuracoes - que ficarao parametrizaveis
 // 
 // 
-
+  private subscriptionR: Subscription; 
   private nRanking: string = '10';
   panels: Panel[];
 
   constructor(
     private dataService: DataService,
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
+
+    //get parent activated route info
+    this.subscriptionR = this.route.paramMap.subscribe((params: any) => {
+      let id = params['monitor'];
+    });
+
 
     this.getPricesTypes();
     this.getSecurities();
@@ -129,6 +138,10 @@ export class PanelComponent implements OnInit {
     this.securitySInfo = secInfo;
 
     console.log(this.securitySInfo);
+  }
+
+  ngOnDestroy(){
+    this.subscriptionR.unsubscribe();
   }
 
 

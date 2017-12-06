@@ -1,8 +1,11 @@
+import { Subscription } from 'rxjs/Subscription';
 import { Response } from '@angular/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { UserService } from './../login/user.service';
 import { User } from './../login/user';
 import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +13,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  
   currentUser: User;
   users: User[] = [];
   refreshTimes = [
@@ -23,13 +26,21 @@ export class HomeComponent implements OnInit {
   refreshValueSelected: number;
   customValueInp: number;
 
-  constructor(private userService: UserService) {
+  private subscriptionR: Subscription;
+
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private router: Router,
+  ){
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   ngOnInit() {
     this.refreshValueSelected = 0;
-    
+    // this.subscriptionR = this.route.paramMap.switchMap((params: ParamMap) => {
+
+    // })  
   }
 
   onChangeSelect(value){
