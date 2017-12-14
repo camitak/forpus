@@ -5,12 +5,15 @@ import { Injectable } from '@angular/core';
 import {  Http, RequestOptions, Headers, Response } from '@angular/http';
 import { error } from 'selenium-webdriver';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { HttpInterceptor } from '@angular/common/http/src/interceptor';
+import { HttpRequest, HttpErrorResponse } from '@angular/common/http';
+import { HttpEvent } from '@angular/common/http';
+import { HttpHandler } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 
 @Injectable()
 export class DataService {
 
-  public data$: BehaviorSubject<any> = new BehaviorSubject({});
-  
   constructor(private http: Http) { }
   
   getPricesType(){
@@ -86,7 +89,14 @@ export class DataService {
     return panels;
   }
 
-
+  ensureAuth(){
+    let isAuthenticated = this.getForpusAPIData('/api/v1/securities', false, '');
+    console.log(isAuthenticated);
+    if(isAuthenticated){
+      return true;
+    }
+    return false;
+  }
 
   private getForpusAPIData(urlGet: string, saveLocal: boolean, labelLocal: string){
     return this.http.get(urlGet, this.jwt()).retry(5).map((response: Response) => {
@@ -101,6 +111,10 @@ export class DataService {
     err => {
       console.log('meu erro ' + err);
       return err;
+    }).catch(e => {
+      if(e.status === 401){
+        return Observable.throw('Unauthorized');
+      }
     });
   }
 

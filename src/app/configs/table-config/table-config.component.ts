@@ -1,6 +1,8 @@
 import { DataService } from './../../services/data.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Panel } from '../../home/panel/panel';
+import { MaterializeDirective, MaterializeAction } from "angular2-materialize";
+
 
 @Component({
   selector: 'app-table-config',
@@ -11,6 +13,7 @@ export class TableConfigComponent implements OnInit {
 
   panels: Panel[];
 
+  
   constructor(
     private dataService: DataService) { }
 

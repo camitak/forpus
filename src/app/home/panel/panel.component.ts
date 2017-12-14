@@ -1,11 +1,11 @@
 import { TableConfigComponent } from './../../configs/table-config/table-config.component';
-import { getTestBed } from '@angular/core/testing';
-import { Component, OnInit, EventEmitter } from '@angular/core';
+// import { getTestBed } from '@angular/core/testing';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { Subscription } from 'rxjs/Subscription';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { MaterializeAction } from 'angular2-materialize';
+import {MaterializeDirective, MaterializeAction} from "angular2-materialize";
 import { Panel } from './panel';
 
 import "rxjs/Rx";
@@ -54,6 +54,16 @@ export class PanelComponent implements OnInit {
   private nRanking: string = '10';
   panels: Panel[];
 
+  refreshTimes = [
+    { time: -1, timeLabel: 'Selecione'},
+    { time: 10, timeLabel: '10 segundos'},
+    { time: 15, timeLabel: '15 segundos'},
+    { time: 0, timeLabel: 'Customizar tempo'}
+  ];
+  showCustomTimeInput: boolean = false;
+  refreshValueSelected: number;
+  customValueInp: number;
+
   constructor(
     private dataService: DataService,
     private router: Router,
@@ -61,11 +71,12 @@ export class PanelComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.refreshValueSelected = 0;
+    
     //get parent activated route info
-    this.subscriptionR = this.route.paramMap.subscribe((params: any) => {
-      let id = params['monitor'];
-    });
+    // this.subscriptionR = this.route.paramMap.subscribe((params: any) => {
+    //   let id = params['monitor'];
+    // });
 
 
     this.getPricesTypes();
@@ -136,12 +147,23 @@ export class PanelComponent implements OnInit {
       return a;
     },{});
     this.securitySInfo = secInfo;
+  }
 
-    console.log(this.securitySInfo);
+  onChangeSelect(value){
+    if( value == 0){
+      this.showCustomTimeInput = true;
+      this.refreshValueSelected = 0;
+    } else{
+      this.showCustomTimeInput = false;
+      this.refreshValueSelected = value;
+    }
+  }
+
+  onClickPause(){
   }
 
   ngOnDestroy(){
-    this.subscriptionR.unsubscribe();
+    // this.subscriptionR.unsubscribe();
   }
 
 

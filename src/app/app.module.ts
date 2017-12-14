@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import 'materialize-css';
 import { MaterializeModule } from 'angular2-materialize';
 import { LoginComponent } from './login/login.component';
 

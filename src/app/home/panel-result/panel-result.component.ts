@@ -1,7 +1,5 @@
+import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
-
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-panel-result',
@@ -10,22 +8,28 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class PanelResultComponent implements OnInit {
 
-  private subscriptionR: Subscription;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-  ) { }
+  headersResult: string[] = [
+  'TICKER',
+  'DATA',
+  'BEF/AFT',
+  'TIPO',
+  'PERÍODO',
+  'REVENUE',
+  'EBITDA',
+  'NET INC',
+  'PE EST',
+  'NET DEBT TO EBITDA',
+  'PX_TO_BOOK_RATIO',
+  'PE RATIO',
+  ];
+
+  
+  
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.subscriptionR = this.route.params.subscribe((params: any) => {
-      let id = params['result'];
-    });
-    console.log(this.router.routerState);
-  }
-
-  ngOnDestroy(){
-    this.subscriptionR.unsubscribe();
+  
   }
 
 }

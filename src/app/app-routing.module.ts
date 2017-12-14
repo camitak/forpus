@@ -13,7 +13,8 @@ import { PanelFundComponent } from './home/panel-fund/panel-fund.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'panel', component: HomeComponent, canActivate: [AuthGuard], children:[
+  { path: 'panel', component: HomeComponent, canActivate: [AuthGuard], 
+  canActivateChild: [AuthGuard], children:[
     { path: 'monitor', component: PanelComponent, canLoad: [AuthGuard] },
     { path: 'result', component: PanelResultComponent, canLoad: [AuthGuard] }, 
     { path: 'fund', component: PanelFundComponent, canLoad: [AuthGuard] },

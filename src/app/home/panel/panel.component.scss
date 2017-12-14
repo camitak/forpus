@@ -1,6 +1,20 @@
 $thFontSize: 90%;
 $tdFontSize: 80%;
-$forpusFontColor: #be9836;
+// $forpusFontColor: #be9836;
+
+
+$forpusColor: #be9836;
+$forpusBackgroundColor:#f8f8f8; 
+
+
+.shift-down{
+    padding-top: 30px;
+}
+
+.btn-floating{
+    background-color: $forpusColor;
+}
+
 
 .z-depth-3 {
     box-shadow: 6px 6px 10px 0 rgba(131, 114, 114, 0.075), 0 1px 18px 0 rgba(131, 114, 114, 0.12), 0 3px 5px -1px rgba(131, 114, 114, 0.3);
@@ -8,7 +22,7 @@ $forpusFontColor: #be9836;
 
 .modal{
     h4{
-        color: $forpusFontColor;
+        color: $forpusColor;
         font-weight: bold;
     }
 
