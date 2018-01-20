@@ -17,42 +17,43 @@ import { HttpResponse } from '@angular/common/http';
 export class DataService {
 
   constructor(private http: Http) { }
-  
+  private urlAPI: string = 'https://forpus.herokuapp.com';
+ 
   getPricesType(){
-    let pricesTypes = this.getForpusAPIData('/api/v1/price_types', true, 'pricesTypes');
+    let pricesTypes = this.getForpusAPIData(this.urlAPI + '/api/v1/price_types', true, 'pricesTypes');
     return pricesTypes;
   }
 
   getSecurities(){
-    let securities = this.getForpusAPIData('/api/v1/securities', true, 'securities');
+    let securities = this.getForpusAPIData(this.urlAPI + '/api/v1/securities', true, 'securities');
     return securities;
   }
 
   getFrequencies(){
-    let frequencies = this.getForpusAPIData('/api/v1/frequencies', true, 'frequencies');
+    let frequencies = this.getForpusAPIData(this.urlAPI + '/api/v1/frequencies', true, 'frequencies');
     return frequencies;
   }
 
   getTimeWeight(){
-    let timeWeight = this.getForpusAPIData('/api/v1/time_weight', true, 'timeWeight');
+    let timeWeight = this.getForpusAPIData(this.urlAPI + '/api/v1/time_weight', true, 'timeWeight');
     return timeWeight;
   }
 
   getTopRankingPrices(priceTypeId: string, nValues: string){
-    let rankingUrl = '/api/v1/top_n_ranking?price_type_id=' + priceTypeId + '&n=' + nValues;
+    let rankingUrl = this.urlAPI + '/api/v1/top_n_ranking?price_type_id=' + priceTypeId + '&n=' + nValues;
     let topRankingPrices = this.getForpusAPIData(rankingUrl, false, '');
     return topRankingPrices;
   }
 
 
   getTopRankingFullH(priceTypeId: string, nValues: string){
-    let rankingUrl = '/api/v1/top_n_ranking_full?price_type_name=' + priceTypeId + '&n=' + nValues;
+    let rankingUrl = this.urlAPI + '/api/v1/top_n_ranking_full?price_type_name=' + priceTypeId + '&n=' + nValues;
     let topRankingPrices = this.getForpusAPIData(rankingUrl, false, '');
     return topRankingPrices;
   }
 
   getTopRankingFullL(priceType: string, nValues: string){
-    let rankingUrl = '/api/v1/top_n_ranking_full?price_type_name=' + priceType + '&n=' + nValues;
+    let rankingUrl = this.urlAPI + '/api/v1/top_n_ranking_full?price_type_name=' + priceType + '&n=' + nValues;
     let topRankingFullL = this.getForpusAPIData(rankingUrl, false, '');
     return topRankingFullL;
   }
@@ -92,7 +93,7 @@ export class DataService {
   }
 
   ensureAuth(){
-    let isAuthenticated = this.getForpusAPIData('/api/v1/securities', false, '');
+    let isAuthenticated = this.getForpusAPIData(this.urlAPI + '/api/v1/securities', false, '');
     return isAuthenticated;
   }
 
