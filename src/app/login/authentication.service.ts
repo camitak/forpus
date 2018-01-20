@@ -9,7 +9,7 @@ export class AuthenticationService {
 
   private headers: Headers = new Headers({
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
+    // 'Access-Control-Allow-Origin': '*',
   });
   showLoginEmmiter = new EventEmitter<boolean>();
   private urlAPI: string = 'https://forpus.herokuapp.com';
@@ -20,7 +20,6 @@ export class AuthenticationService {
     return this.http.post(this.urlAPI + '/api/v1/authenticate', 
     JSON.stringify({email: email, password: password}), {headers: this.headers})
     .map((response:  Response) => {
-      console.log(response);
       // login successful if there is a jasonwebtoken (jwt) token in the response
       let user = response.json();
       if(user && user.auth_token){

@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 import {  Http, RequestOptions, Headers, Response } from '@angular/http';
 import { error } from 'selenium-webdriver';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import 'rxjs/add/operator/catch';
+
 import { HttpInterceptor } from '@angular/common/http/src/interceptor';
 import { HttpRequest, HttpErrorResponse } from '@angular/common/http';
 import { HttpEvent } from '@angular/common/http';
@@ -91,29 +93,22 @@ export class DataService {
 
   ensureAuth(){
     let isAuthenticated = this.getForpusAPIData('/api/v1/securities', false, '');
-    console.log(isAuthenticated);
-    if(isAuthenticated){
-      return true;
-    }
-    return false;
+    return isAuthenticated;
   }
 
   private getForpusAPIData(urlGet: string, saveLocal: boolean, labelLocal: string){
     return this.http.get(urlGet, this.jwt()).retry(5).map((response: Response) => {
-      let getData = response.json();
-      if(getData){
-        if(saveLocal){
-          localStorage.setItem(labelLocal,JSON.stringify(getData.data || getData));
+      console.log(response);
+      if(response.status === 401){
+        console.log('Meu erro')
+      }else{
+        let getData = response.json();
+        if(getData){
+          if(saveLocal){
+            localStorage.setItem(labelLocal,JSON.stringify(getData.data || getData));
+          }
+          return JSON.stringify(getData.data || getData);
         }
-        return JSON.stringify(getData.data || getData);
-      }
-    },
-    err => {
-      console.log('meu erro ' + err);
-      return err;
-    }).catch(e => {
-      if(e.status === 401){
-        return Observable.throw('Unauthorized');
       }
     });
   }

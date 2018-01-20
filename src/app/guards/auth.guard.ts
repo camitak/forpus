@@ -16,14 +16,24 @@ export class AuthGuard implements CanActivate, CanLoad, CanActivateChild {
     ) { }
 
     canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
-        // console.log(this.dataService.ensureAuth());
-        if(localStorage.getItem('currentUser')){
-            return true;
-        }
-        
-        // not logged in so restrict to login page with the return url
-        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
-        return false;
+        // let isAuthenticated: boolean = false;
+        return true;
+        // let isAuthenticated = this.dataService.ensureAuth().subscribe(res => {
+        //     if(res && localStorage.getItem('currentUser')){
+        //         return true;
+        //     }else{
+        //         return false;
+        //     }
+        // });
+
+        // // not logged in so restrict to login page with the return url
+        // if(isAuthenticated){
+        //     return true;
+        // }else{
+        //     this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+        //     return false;
+        // }
+       
     }
     
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
