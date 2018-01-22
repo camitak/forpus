@@ -31,12 +31,26 @@
       </div>
   
       <!-- submit button -->
-      <div>
+      <div class="btn-spinner-loading">
         <button [disabled]="loading" class="btn waves-effect waves-light" 
           type="submit" name="action">Entrar
           <i class="material-icons right">send</i>        
         </button>
       </div>
+      <div class="btn-spinner-loading">
+        <div *ngIf="loading"  class="preloader-wrapper small active offset-s1">
+          <div class="spinner-layer spinner-yellow-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </form>
   </div>
   
