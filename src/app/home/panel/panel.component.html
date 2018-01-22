@@ -1,6 +1,6 @@
 <div class="container">
   <div class="shift-down row">
-      <div class="input-field col s4">
+      <div class="input-field col s3">
           <select #selectRefreshTime materialize="material_select" 
           (change)="onChangeSelect(selectRefreshTime.value)">
               <option *ngFor="let timeItem of refreshTimes" [value]="timeItem.time">
@@ -13,14 +13,15 @@
           </label>
       </div>
   
-      <div #customTime class="col s4 offset-s1" *ngIf="showCustomTimeInput">
-          <div class="input-field ">
+      <div #customTime class="col s3 offset-s1" *ngIf="showCustomTimeInput">
+          <div class="input-field">
               <input #customValue="ngModel" required id="customTimeInput" 
-              type="number" class="validate" [(ngModel)]="refreshValueSelected" >
+              type="number" class="validate" (change)="onChangeInput()" 
+              [(ngModel)]="refreshValueSelected" min="1">
               
               <label for="customTimeInput" data-error="Valor inválido" class="active" data-success>
                   <i class="tiny material-icons">alarm_on</i>
-                  Digite o tempo de refresh (segundos):
+                  Tempo de refresh (segundos):
               </label>
           </div>
       </div>
@@ -33,7 +34,14 @@
       </div>
       
       <div class="col s1">
-          <a class="btn-floating btn-large waves-effect waves-light">
+        <a class="btn-floating btn-large waves-effect waves-light"
+        (click)="onClickResume()">
+            <i class="material-icons">play_arrow</i>
+        </a>
+      </div>  
+      <div class="col s1">
+          <a class="btn-floating btn-large waves-effect waves-light"
+          (click)="onClickRefresh()">
               <i class="material-icons">refresh</i>
           </a>
       </div>
@@ -105,9 +113,9 @@
               panels[i].resultTableH : panels[i].resultTableL); 
               let j = index">
               <td> <a class="modal-trigger" (click)="openModal(panels[i].resultTableH[j]?.ticker)">{{ panels[i].resultTableH[j]?.ticker }}</a></td>
-              <td [ngStyle]="{'color': panels[i].resultTableH[j]?.pct > 0 ? '#1dcc92': 'tomato'}"> {{ panels[i].resultTableH[j]?.pct }}</td>
+              <td [ngStyle]="{'color': panels[i].resultTableH[j]?.pct > 0 ? '#1dcc92': 'tomato'}"> {{ panels[i].resultTableH[j]?.pct | number:'.1'}}</td>
               <td> <a class="modal-trigger" (click)="openModal(panels[i].resultTableL[j]?.ticker)">{{ panels[i].resultTableL[j]?.ticker }}</a></td>
-              <td [ngStyle]="{'color': panels[i].resultTableL[j]?.pct > 0 ? '#1dcc92': 'tomato'}"> {{ panels[i].resultTableL[j]?.pct }}</td>
+              <td [ngStyle]="{'color': panels[i].resultTableL[j]?.pct > 0 ? '#1dcc92': 'tomato'}"> {{ panels[i].resultTableL[j]?.pct | number:'.1'}}</td>
               <td *ngIf="panels[i].id == 3"> </td>
             </tr>
           </tbody>

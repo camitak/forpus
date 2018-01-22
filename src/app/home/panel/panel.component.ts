@@ -1,5 +1,4 @@
 import { TableConfigComponent } from './../../configs/table-config/table-config.component';
-// import { getTestBed } from '@angular/core/testing';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -10,6 +9,7 @@ import { Panel } from './panel';
 
 import "rxjs/Rx";
 import { Router, ActivatedRoute } from '@angular/router';
+
 // import 'rxjs/add/operator/retry';
 
 @Component({
@@ -42,6 +42,7 @@ export class PanelComponent implements OnInit {
   private pricesType: any;
   private securities: any;
   private dataRanking: any;
+  private timeR: any;
 
   dataPanel1Hr: any;
   securitySelected: string;
@@ -71,17 +72,17 @@ export class PanelComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.refreshValueSelected = 0;
+    this.refreshValueSelected = 10;
+    this.panels = this.dataService.getPanels();
     
-    //get parent activated route info
-    // this.subscriptionR = this.route.paramMap.subscribe((params: any) => {
-    //   let id = params['monitor'];
-    // });
-
-
     this.getPricesTypes();
     this.getSecurities();
-    this.panels = this.dataService.getPanels();
+    this.getPanels();
+
+    this.refreshPanel(); 
+  }
+
+  getPanels(){
     for(let i=0; i<this.panels.length; i++ ){
 
       (function (parent, idx) {
@@ -113,6 +114,11 @@ export class PanelComponent implements OnInit {
           console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
         }
       });
+  }
+
+  onChangeInput(){
+    this.refreshPanel();
+    console.log(this.refreshValueSelected);
   }
 
   getSecurities(){
@@ -152,14 +158,33 @@ export class PanelComponent implements OnInit {
   onChangeSelect(value){
     if( value == 0){
       this.showCustomTimeInput = true;
-      this.refreshValueSelected = 0;
+      this.refreshValueSelected = 10;
     } else{
       this.showCustomTimeInput = false;
       this.refreshValueSelected = value;
     }
+    this.refreshPanel();
   }
 
+  
   onClickPause(){
+    clearInterval(this.timeR);
+  }
+  
+  onClickRefresh(){  
+    this.refreshPanel();  
+  }
+
+  onClickResume(){
+    this.refreshPanel();
+  }
+
+  refreshPanel(){
+    clearInterval(this.timeR);
+    this.getPanels();
+    this.timeR = setInterval(()=>{
+      this.getPanels();
+    }, this.refreshValueSelected * 1000); 
   }
 
   ngOnDestroy(){

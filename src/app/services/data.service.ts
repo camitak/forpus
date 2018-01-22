@@ -46,14 +46,14 @@ export class DataService {
   }
 
 
-  getTopRankingFullH(priceTypeId: string, nValues: string){
-    let rankingUrl = this.urlAPI + '/api/v1/top_n_ranking_full?price_type_name=' + priceTypeId + '&n=' + nValues;
+  getTopRankingFullH(priceType: string, nValues: string){
+    let rankingUrl = this.urlAPI + '/api/v1/top_n_ranking_high?price_type_name=' + priceType + '&n=' + nValues;
     let topRankingPrices = this.getForpusAPIData(rankingUrl, false, '');
     return topRankingPrices;
   }
 
   getTopRankingFullL(priceType: string, nValues: string){
-    let rankingUrl = this.urlAPI + '/api/v1/top_n_ranking_full?price_type_name=' + priceType + '&n=' + nValues;
+    let rankingUrl = this.urlAPI + '/api/v1/top_n_ranking_low?price_type_name=' + priceType + '&n=' + nValues;
     let topRankingFullL = this.getForpusAPIData(rankingUrl, false, '');
     return topRankingFullL;
   }
@@ -98,8 +98,7 @@ export class DataService {
   }
 
   private getForpusAPIData(urlGet: string, saveLocal: boolean, labelLocal: string){
-    return this.http.get(urlGet, this.jwt()).retry(5).map((response: Response) => {
-      console.log(response);
+    return this.http.get(urlGet, this.jwt()).map((response: Response) => {
       if(response.status === 401){
         console.log('Meu erro')
       }else{
