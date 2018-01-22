@@ -9,6 +9,8 @@ import { Panel } from './panel';
 
 import "rxjs/Rx";
 import { Router, ActivatedRoute } from '@angular/router';
+import { timer } from 'rxjs/observable/timer';
+import { take, map } from 'rxjs/operators';
 
 // import 'rxjs/add/operator/retry';
 
@@ -43,6 +45,8 @@ export class PanelComponent implements OnInit {
   private securities: any;
   private dataRanking: any;
   private timeR: any;
+  countdown: any;
+  private timecount: any;
 
   dataPanel1Hr: any;
   securitySelected: string;
@@ -77,7 +81,8 @@ export class PanelComponent implements OnInit {
     
     this.getPricesTypes();
     this.getSecurities();
-    this.getPanels();
+    // this.getPanels();
+    // this.countdownTimer();
 
     this.refreshPanel(); 
   }
@@ -118,7 +123,6 @@ export class PanelComponent implements OnInit {
 
   onChangeInput(){
     this.refreshPanel();
-    console.log(this.refreshValueSelected);
   }
 
   getSecurities(){
@@ -181,12 +185,26 @@ export class PanelComponent implements OnInit {
 
   refreshPanel(){
     clearInterval(this.timeR);
+    this.countdownTimer();
     this.getPanels();
     this.timeR = setInterval(()=>{
+      this.countdownTimer();
       this.getPanels();
-    }, this.refreshValueSelected * 1000); 
+    }, this.refreshValueSelected * 1000);
+     
   }
 
+  countdownTimer(){
+    this.countdown = this.refreshValueSelected;
+    clearInterval(this.timecount);
+    this.timecount = setInterval(()=>{
+      this.countdown--; 
+      if(this.countdown < -1){
+        clearInterval(this.timecount);
+      }  
+    }, 1000); 
+    
+  }
   ngOnDestroy(){
     // this.subscriptionR.unsubscribe();
   }
